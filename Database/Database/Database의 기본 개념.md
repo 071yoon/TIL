@@ -38,7 +38,7 @@
         - 일반 레코드와 대응
             - record type vs. record instance/ record occurence
         
-        ![Untitled](Database%E1%84%8B%E1%85%B4%20%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7%2052bfd2b22c8c496390ba7f8247998c4a/Untitled.png)
+        ![Untitled](WhatIsDB/Untitled.png)
         
     - 관계란
         - 속성 관계
@@ -46,7 +46,7 @@
         - 개체 관계
             - 개체 간 관계
         
-        ![Untitled](Database%E1%84%8B%E1%85%B4%20%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7%2052bfd2b22c8c496390ba7f8247998c4a/Untitled%201.png)
+        ![Untitled](WhatIsDB/Untitled%201.png)
         
 - Database의 구조
     - 논리적 구조
@@ -60,7 +60,7 @@
             - index, pointer chain, overflow area etc.
         - 저장 레코드
     
-    ![Untitled](Database%E1%84%8B%E1%85%B4%20%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7%2052bfd2b22c8c496390ba7f8247998c4a/Untitled%202.png)
+    ![Untitled](WhatIsDB/Untitled%202.png)
     
 - DBMS의 발전 배경
     
@@ -79,7 +79,7 @@
     - 파일 시스템에서 응용프로그램과 파일과의 관계
         - 1:1의 관계
         
-        ![Untitled](Database%E1%84%8B%E1%85%B4%20%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7%2052bfd2b22c8c496390ba7f8247998c4a/Untitled%203.png)
+        ![Untitled](WhatIsDB/Untitled%203.png)
         
     
     ### 발전배경 3
@@ -100,7 +100,7 @@
     
     - 파일 관리 시스템과 응용 프로그램
     
-    ![Untitled](Database%E1%84%8B%E1%85%B4%20%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7%2052bfd2b22c8c496390ba7f8247998c4a/Untitled%204.png)
+    ![Untitled](WhatIsDB/Untitled%204.png)
     
 - 데이터베이스 관리 시스템의 정의
     - DBMS(Database management system) 이란?
@@ -108,7 +108,7 @@
         응용 프로그램과 데이터 사이의 중재자로 모든 응용 프로그램들이 데이터베이스를 공용되게 사용 할 수 있게 관리해 주는 범용 소프트웨어 시스템
         
     
-    ![Untitled](Database%E1%84%8B%E1%85%B4%20%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7%2052bfd2b22c8c496390ba7f8247998c4a/Untitled%205.png)
+    ![Untitled](WhatIsDB/Untitled%205.png)
     
 - DBMS의 필수기능
     
@@ -164,7 +164,7 @@
     - 데이터 독립성 구현 기법
         - 사상(mapping)
     
-    ![Untitled](Database%E1%84%8B%E1%85%B4%20%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7%2052bfd2b22c8c496390ba7f8247998c4a/Untitled%206.png)
+    ![Untitled](WhatIsDB/Untitled%206.png)
     
 - DBMS의 발전 과정
     - 제 1세대 DBMS
@@ -241,7 +241,7 @@
                     - 개념 스키마에 대한 저장구조를 정의
                         - 레코드 형식, 인덱스의 유무, 데이터의 표현방법, 레코드의 물리적 순서 etc
         
-        ![Untitled](Database%E1%84%8B%E1%85%B4%20%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7%2052bfd2b22c8c496390ba7f8247998c4a/Untitled%207.png)
+        ![Untitled](WhatIsDB/Untitled%207.png)
         
     - 3단계간의 사상(Mapping)
         - 외부/ 개념 단계 간의 매핑
@@ -255,7 +255,7 @@
         
         - 스키마는 컴파일 되어 catalog에 저장되며 스키마를 그래픽 형태로 표현한 것이 스키마 다이어그램이 된다.
         
-        ![Untitled](Database%E1%84%8B%E1%85%B4%20%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7%2052bfd2b22c8c496390ba7f8247998c4a/Untitled%208.png)
+        ![Untitled](WhatIsDB/Untitled%208.png)
         
     - System Catalog & Data Directory
         - System Catalog
@@ -366,7 +366,7 @@
                 - disk manager가 데이터 전송을 수행
                 - 메모리 내에 buffer manager 가 관리
         
-        ![Untitled](Database%E1%84%8B%E1%85%B4%20%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7%2052bfd2b22c8c496390ba7f8247998c4a/Untitled%209.png)
+        ![Untitled](WhatIsDB/Untitled%209.png)
         
 - 데이터베이스 관리자(DBA)
     
@@ -401,4 +401,4 @@
         - 내용식 메모리 (associative memory)
         - 병렬처리
 
-![Untitled](Database%E1%84%8B%E1%85%B4%20%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7%2052bfd2b22c8c496390ba7f8247998c4a/Untitled%2010.png)
+![Untitled](WhatIsDB/Untitled%2010.png)

@@ -512,11 +512,11 @@
         
         some
         
-        ![Untitled](SQL%205679da08001141ba817d3eb0a797fc2b/Untitled.png)
+        ![Untitled](SQL/Untitled.png)
         
         all
         
-        ![Untitled](SQL%205679da08001141ba817d3eb0a797fc2b/Untitled%201.png)
+        ![Untitled](SQL/Untitled%201.png)
         
 - SQL View
     - 하나 또는 둘 이상의 기본 테이블로부터 유도되어 만들어지는 가상의 테이블
