@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+	<style>
+		@font-face {
+        font-family: "Cafe24SsurroundAir";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+      * {
+        font-family: "Cafe24SsurroundAir", serif;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      button {
+        width: 100%;
+        border: none;
+        padding: 10px;
+        background-color: inherit;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #ff9999;
+        color: white;
+      }
+	</style>
+</head>
+<body>
+	<h1>Library</h1>
+		<form method="post" action ="/all_books">
+			<button type="all books">All Books</button>
+		</form>
+		<form method="get" action ="/my_books">
+			<button type = "my books">My books</button>
+		</form>
+		<form method="get" action = "/donate">
+			<button type="donate">Donate Book</button>
+		</form>
+		<form method="get" action = "/borrow">
+			<button type="borrow">Borrow Book</button>
+		</form>
+		<form method="get" action = "/return">
+			<button type="return">Return Book</button>
+		</form>
+		<form method="get" action = "/extend">
+			<button type="extend">Extend Book</button>
+		</form>
+</body>
+</html>

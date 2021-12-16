@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>영기의 서비스앱</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      body{
+        display: flex;
+        flex-direction: column;
+            justify-content: center;
+            align-items: center;
+      }
+      form{
+        display: flex;
+        flex-direction: column;
+      }
+      button {
+        width: 100%;
+        border: none;
+        padding: 10px;
+        background-color: inherit;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #ff9999;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Welcome to 201713025's 앱</p>
+    <form method = "get" action = "/my_page">
+      <button type="submit">내정보</button>
+    </form>
+    <form method = "get" action = "/takes">
+      <button type="submit">takes</button>
+    </form>
+    <form method = "get" action = "/library">
+      <button type="library">library</button>
+    </form>
+  </body>
+</html>
