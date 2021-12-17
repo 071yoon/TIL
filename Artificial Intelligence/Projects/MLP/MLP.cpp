@@ -1,22 +1,26 @@
 #include <stdio.h>
 #include <math.h>
 #include <algorithm>
+#define alpha 1
 
 double sigmoid(double x, int flag){
 	double ret;
 	
 	if (flag == 1) 
-		ret = 1 / (1 + exp(x * -1));
+		ret = 1 / (1 + exp(x * -1 * alpha));
 	else
-		ret = (2 / (1 + exp(x * -1))) - 1;
+		ret = (2 / (1 + exp(x * -1 * alpha))) - 1;
 	return (ret);
 }
 
 double dx_sigmoid(double x, int flag){
 	double ret;
 
-	ret = (1 + sigmoid(x, flag)) * (1 - sigmoid(x , flag));
-	return (ret / 2);
+	if (flag == 1)
+		ret = alpha * (sigmoid(x, flag)) * (1 - sigmoid(x, flag));
+	else
+		ret = (alpha * (1 + sigmoid(x, flag)) * (1 - sigmoid(x , flag))) / 2;
+	return (ret);
 }
 
 
