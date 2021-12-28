@@ -1,205 +1,341 @@
-# 모델링
+# 정규화
 
-- World of Data
-    
-    ![Untitled](Normalize/Untitled.png)
-    
-    - 현실 세계(real world)의 구조적 표현
+- 데이터의 논리적 표현
+    - 릴레이션 스키마의 설계
+        - 논리적 데이터베이스 설계
+        - 관계 모델을 이용하여 어떻게 실세계를 정확히 표현 할 것인가.
+        1. 애트리뷰트, 엔티티, 관계성을 파악
+        2. 관련된 애트리뷰트들을 릴레이션으로 묶는다
+            - 애트리뷰트들간의 관계성, 데이터 종속성
+            - 효율적인 데이터의 처리
+            - 데이터의 일관성
+        3. 변칙적 성질의 예방
+            - 데이터 변경 시의 이상
+    - 이상의 예
         
-        → 데이타베이스 설계(database design)
+        ![Untitled](Normalize/Untitled.png)
         
-    
-    i. 개념적 모델링(conceptual modeling)
-    
-    - 현실 세계를 추상적 개념 (abstract concepts), 개체 타입(entity type)으로 표현
-    - 개념적 구조(conceptual structure)
-    - 개념적 설계 (conceptual design)
-    
-    ii. 데이타 모델링 (logical modeling)
-    
-    - 개념적 구조를 논리적 개념(logical concepts), 레코드 타입(record type)으로 표현
-    - 논리적 구조(logical structure), 데이타 모델(data model)
-    - 논리적 설계 (logical design)
-    
-    iii. 데이타 구조화(data structuring)
-    
-    - 논리적 구조를 물리적 구조(physical structure)로 표현
-    - 물리적 설계 (physical design)
-    - 저장장치에서의 데이타표현
-    
-    ![Untitled](Normalize/Untitled%201.png)
-    
-- Data Model
-    - 데이타베이스 설계(database design) 과정의 일부
-        - 설계의 핵심은 개념적인 구조와 논리적인 구조를 거쳐 실제 데이타를 저장할 수 있는 물리적 구조로 변환하는 것
-    - 개념적 데이타 모델링(conceptual data modeling)
-        - 애트리뷰트(attribute)들로 기술된 개체 타입(entity type)과 이 개체 타입들 간의 관계(relationship)를 이용하여 현실 세계를 표현하는 방법
-        - 가장 대표적인 모델이 개체-관계 모델(E-R Model : Entity-Relationship model)
-    - 논리적 데이타 모델링(logical data modeling)
-        - 데이타 필드(field)로 기술된 레코드 타입(record type)과 이 레코드 타입들 간의 관계를 이용하여 개념 세계를 표현하는 방법
-        - 관계 데이타 모델(relational data model), 네트워크 데이타 모델(network data model), 계층 데이타 모델(hierarchical data model), 객체 지향데이타 모델(object-oriented data model), 객체-관계 데이타 모델(object-relational data model)
-    - 데이타 모델(data model: D)
+        - 삭제 이상(deletion anomaly)
+            
+            200번 학생이 'C123'과목을 등록 취소 시 200번이 3학년이라는 것도 손실
+            
+            → 연쇄 삭제에 의한 정보 손실
+            
+        - 삽입 이상(insertion anomaly)
+            
+            600번 학생이 2학년이라는 사실을 삽입 시 과목번호를 필수 삽입 해야된다 (과목번호가 기본키 인 경우)
+            
+            → 원하지 않는 정보의 강제 삽입
+            
+        - 갱신 이상(update anomaly)
+            
+            400번 학생의 학년을 4에서 3으로 변경시 학번 400에 대한 4개의 투플을 모두 변경해야된다
+            
+            → 중복 데이터의 일부 갱신으로 정보의 모순성이 발생한다
+            
+    - 이상의 원인과 해결책
+        - 이상의 원인
+            - 하나의 개체에 속한 애트리뷰트들 간에 존재하는 여러 개의 종속관계를 하나의 릴레이션으로 표현한다
+        - 이상의 해결
+            - 애트리뷰트들 간의 여러 종속관계를 분해하여 각각 하나의 릴레이션으로 표현한다
+                
+                → 정규화
+                
+    - 스키마 설계와 변환
+        - 스키마의 설계 : 데이터베이스의 논리적 설계
+            1. 애트리뷰트들과 이들의 제약조건들을 수집
+            2. 수집된 결과를 명시된 제약조건에 따라 바람직한 여러개의 릴레이션으로 분할
+                
+                → 스키마 변환
+                
+        - 스키마 변환의 원리
+            1. 정보 표현의 무손실 → 개선된 구조
+            2. 최소의 데이터 중복
+            3. 분리의 원칙 → 독립된 관계성은 별도의 릴레이션으로 분리시켜 표현
+- 함수 종속(FD)
+    - 함수 종속(functional dependency : FD) 이란
+        - 어떤 릴레이션 R에서, R의 애트리뷰트의 부분집합 X,Y에 대하여 애트리뷰트 X의 값 각각에 대해 항상 애트리뷰트 Y의 값이 오직 하나만 연관
+            
+            → 애트리뷰트  Y는 애트리뷰트 X에 함수 종속 : X → Y
+            
+        - 애트리뷰트 X는 Y를 (함수적으로) 결정
+            - X → 결정자
+            - Y → 종속자
+        - X나 Y는 각각 두개 이상의 애트리뷰트 집합이 될 수 있다
+        - R에서 애트리뷰트 X가 키라면 → R의 모든 애트리뷰트 Y에 대해서 X → Y 이다.
+        - 함수종속 X → Y 인 경우
+            
+            애트리뷰트 X가 반드시 '키'라는 것을 요건으로 하지 않는다.
+            
+            즉, X의 어느 한 값에 대응되는 Y 값을 갖는 투플이 둘 이상 존재 할 수 있다
+            
+            (같은 X값을 갖는 투플의 존재가 가능함)
+            
+    - 함수종속 다이어그램
         
-        D = <S, O, C>
+        ![Untitled](Normalize/Untitled%201.png)
         
-    - S : 논리적으로 표현된 데이터 구조(structure)
-        - 데이터의 정적 성질(static properties)
-        - 개체 타입과 이들 간의 관계를 명세
-    - O : 주어진 구조에서 허용되는 연산(operation)
-        - 데이타의 동적 성질(dynamic properties)
-            - 데이타베이스 상태: 한 시점에 데이터베이스에 표현되어 있는 개체 인스턴스들(값들)
-            - 연산을통하여한상태에서다른한상태로전이
-        - 개체 인스턴스(instance)를 처리하는 작업에 대한 명세
-        - 데이타의 조작 기법
-    - C : 제약 조건(constraints)
-        - 데이타의 논리적 제약(logical constraints)
-            - 개체 인스턴스의 존재 조건
-            :구조(S)로부터 파생 되는 구조적 제약
-            :의미상 제약
-        - 데이타 조작의 한계를 표현하는 규정
-    - 논리적 데이타 모델 중에서 가장 많이 사용되고 있는 모델은 관계 데이타 모델 (relational data model)
-    - 그 이전에는 네트워크 데이타 모델(network data model) 과 계층 데이타 모델 (hierarchical data model)이 많이 사용됨
-    - 최근에는 객체 지향 데이타 모델(object-oriented data model)과 객체-관계 데이타 모델 (object-relational data model)이 사용
-    - DBMS는 하나의 논리적 데이타 모델만을 구현
-        - 모델 간의 주요 차이점은 데이타 요소 간의 관계(relationships)를 표현하는 방식
-- Entity Type
-    - 개체 (entity)
-        - 단독으로 존재할 수 있으며 다른 것과 구별되는 객체(object)
-    - 개체 타입(entity type)
-        - 이름(name)과 애트리뷰트(attribute)들로 정의됨
-        - 똑같은 애트리뷰트들로 구성된 개체의 공통된 논리적 구조
-        - 개체 집합(entity set)
-            - 한 개체 타입에 대한 개체 인스턴스(instance)들의 집합
-    - 애트리뷰트(attribute)의 유형
+        수강 릴레이션 : 수강(학번, 과목번호, 학년, 성적)
         
-        i. 단순 애트리뷰트와 복합 애트리뷰트
-        ii. 단일 값 애트리뷰트와 다중 값 애트리뷰트
-        iii. 유도 애트리뷰트와 저장 애트리뷰트
-        iv. 널(null) 애트리뷰트
+        기본 키 : {학번, 과목번호}
         
-    - 단순 애트리뷰트와 복합 애트리뷰트
-        - 단순 애트리뷰트(simple attribute) : 더 이상 작은 구성원소로 분해할 수 없는 애트리뷰트
-        - 복합 애트리뷰트(composite attribute)는 몇 개의 기본적인 단순 애트리뷰트로 분해할 수 있는 애트리뷰트
+        {학번, 과목번호} → 성적
+        
+        학번 → 학년
+        
+        1. '학년'은 '학번'에 완전 함수 종속
+        2. '학년'은 {학번, 과목번호} 에 부분 함수 종속
+        3. '성적'은 {학번, 과목번호}에 완전 함수 종속
+    - 완전 함수 종속과 부분 함수 종속
+        
+        2개 이상으로 구성된 애트리뷰트 집합 X에 대하여 X → Y 가 성립 할 때
+        
+        - 완전 함수 종속
+            
+            X’⊂X이고 X’→Y가성립되는애트리뷰트X'이존재하지않는경우
+            
+            종속자가 기본키에만 종속되며, 기본키가 여러 속성으로 구성되어 있을경우 기본키를 구성하는 모든 속성이 포함된 기본키의 부분집합에 종속된 경우
+            
+        - 부분 함수 종속
+            
+            X’⊂X이고 X’→Y가성립되는 애트리뷰트X'이존재하는경우
+            
+            릴레이션에서 종속자가 기본키가 아닌 다른 속성에 종속되거나, 기본키가 여러 속성으로 구성되어 있을경우 기본키를 구성하는 속성 중 일부만 종속되는 경우
+            
+        - 함수 종속에 대한 추론 규칙
+            - 암스트롱의 공리
+                
+                R1: (반사, reflexive) A ⊇ B이면 A → B이다. 또한 A → A이다 
+                
+                R2: (첨가, augmentation) A → B이면 AC → BC이고 AC → B이다. 
+                
+                R3: (이행, transitive) A → B이고 B → C이면 A → C이다.
+                
+                R4: (분해, decomposition) A → BC이면 A → B이다. 
+                
+                R5: (결합, union) A → B이고 A → C이면 A → BC이다.
+                
+            - 함수 종속은 데이터의 의미를 표현한다
+                - '학번 → 학년'은 '학생은 한 학년에만 속한다' 라는 것을 의미
+                - 의미적 제약 조건
+            - DBMS는 함수 종속을 유지하기 위해 함수 종속을 스키마에 명세하는 방법과 함수 종속을 보장하는 방법을 제공해야 한다.
+- 기본 정규형
+    - 정규형이란 (Normal Form)
+        - 어떤 일련의 제약조건 (constraints)를 만족하는 릴레이션
+        - 정규화 즉 스키마 변환 (S → S')으로 정규형을 만든다
+    - 정규화의 원칙
+        1. 정보 표현의 무손실
+            - 같은 의미의 정보 유지
+            - 효율적인 구조
+        2. 최소의 데이터 중복
+        3. 분리의 원칙
+            - 독립적인 관계는 별개의 릴레이션으로 표현
+            - 릴레이션 각각에 대하여 독립적인 처리가 가능
+- 제 1정규형 <1NF>
+    - First Normal Form (1NF)의 정의
+        - **모든 도메인이 원자값으로만 이루어진 릴레이션**
+        
+        <수강지도 릴레이션>
+        
+        - 수강지도 (학번, 지도교수, 학과, 과목번호, 성적)
+        - 기본 키 : {학번, 과목번호}
+        - 함수 종속 :
+            - {학번, 과목번호} → 성적
+            - 학번 → 지도교수
+            - 학번 → 학과
+            - 지도교수 → 학과
         
         ![Untitled](Normalize/Untitled%202.png)
         
-    - 단일 값 애트리뷰트와 다중 값 애트리뷰트
-        - 단일 값 애트리뷰트(single-valued attribute)
-            - 대부분의 애트리뷰트들은 특정 개체에 대해 하나의 값을 가짐
-            - “학생” 개체 타입의 name(이름) 애트리뷰트 : 각 개체에 대해 하나의 값만 가짐
-        - 다중 값 애트리뷰트(multivalued attribute)
-            - 한 개체에 대해서 몇 개의 값을 가지고 있을 수 있음
-            - “학생” 개체 타입에 hobby(취미) 애트리뷰트 : 학생에 따라서는 두 개이상의 취미를 가질수있음
-            - 현실적으로 다중 값 애트리뷰트로 처리하기 위해서 값의 최대 수 제한 가능
-    - 유도 애트리뷰트와 저장 애트리뷰트
-        - 유도 애트리뷰트(derived attribute)
-            - 애트리뷰트의 값이 다른 애트리뷰트나 개체가 가지고 있는 값으로부터 유도되어 결정되는 경우
-        - 저장 애트리뷰트(stored attribute)
-            - 유도 애트리뷰트를 생성하는데 사용된 애트리뷰트
-        - 과목별 평균 성적을 표현하는 “과목**-**성적” 개체 타입의 “평균 성적” 애트
-        리뷰트인 경우
-            - “평균 성적” 애트리뷰트의 값은 등록 개체 타입의 “성적” 애트리뷰트 값을 평균한 결과로 결정
-            - “평균 성적” 애트리뷰트 : 유도 애트리뷰트
-            - 이를 위해 사용된 “성적” 애트리뷰트 : 저장 애트리뷰트
-    - 널 애트리뷰트 (null attribute)
-        - 널 값(null value)을 갖는 애트리뷰트
-        - 널 값은 어떤 개체 인스턴스가 어느 특정 애트리뷰트에 대한 값을 가지고 있지 않을 때 이를 명시적으로 표시하기 위해 사용
-    - 널(null)값을 갖는 경우
-        - 그 애트리뷰트 값이 그 개체에 “해당되지 않는”(not applicable) 경우
-        - 그 애트리뷰트 값을 “알 수 없는”(unknown) 경우
-            - 그 값이 존재하지만 값이 “누락”(missing)인 경우
-            - 그 값이 존재하고 있는지 조차 알 수 없어 “모르는”(not known) 경우
-- Relationship Type
-    - 관계 타입(relationship type)
-        - 개체간의연관을통해의미를표현하는개체타입의한특수형태
-        - 개체 집합(타입)들 사이의 대응(correspondence), 즉 사상(mapping)을 의미
-        
         ![Untitled](Normalize/Untitled%203.png)
         
-        ![Untitled](Normalize/Untitled%204.png)
+    - 1NF에서 이상
+        1. 삽입이상
+            
+            → 500번 학생의 지도교수가 P4라고 삽입 하려 할 때 과목을 등록해야한다
+            
+        2. 삭제이상
+            
+            → 200번 학생이 'C123'를 취소하면, 200번의 지도교수가 P2라는 사실도 손실
+            
+        3. 갱신이상
+            
+            → 400번 학생이 P1 에서 P3으로 변경하는 경우, 학번이 400인 4개의 투플 모두 변경필요
+            
+    - 이상의 원인
+        - 기본키에 부분 함수 종속된 애트리뷰트 존재
+            
+            → 기본키로 식별되는 개체와 무관한 애트리뷰트 존재
+            
+            → 두가지 독립적인 정보가 하나의 릴레이션으로 표현됨
+            
+    - 이상의 해결
+        - 프로젝션으로 1NF 릴레이션을 분해한다 → 부분 함수 종속을 제거
+- 제 2정규형 <2NF>
+    - 2정규형의 정의
         
-    - 사상 원소 수
+        **→ 1NF 에서 키에 속하지 않는 애트리뷰트들은 모두 기본 키에 완전 함수 종속**
         
-        ![Untitled](Normalize/Untitled%205.png)
+    - 무손실 분해
+        - 프로젝션으로 분해된 릴레이션들은 자연 조인을 통해 복귀가 가능
+        - 원래의 릴레이션에서 얻을 수 있는 정보는 분해된 릴레이션에서도 얻을 수 있음 (역은 성립 x)
+        - R(A,B,C)에서 함수 종속 A → B 라면 R1(A,B), R2(A,C)로 무손실 분해 가능
+    
+    수강지도 (학번, 지도교수, 학과, 과목번호, 성적)
+    
+    - 지도 (학번, 지도교수, 학과) :
+        
+        기본 키 → 학번
+        
+    - 수강 (학번, 과목번호, 성적) :
+        
+        기본 키 → {학번, 과목번호},
+        
+        외래 키 → {학번} 참조 : 지도
+        
+    
+    ![Untitled](Normalize/Untitled%204.png)
+    
+    ![Untitled](Normalize/Untitled%205.png)
+    
+    - 2NF에서의 이상
+        
+        <이행적 함수 종속이 존재하여 이상이 발생함>
+        
+        릴레이션 R에 함수 종속 A → C 가 존재하고 함수 종속 A → B, B → C가 성립 할 때 C는 A에 이행적 함수 종속이다.
+        
+        1. 삽입 이상 → 어떤 지도교수가 특정 학과에 속하는지 삽입이 불가능
+        2. 삭제 이상 → 300번 학생의 투플 삭제 시 지도교수가 컴퓨터 공학과라는 사실을 상실
+        3. 갱신 이상 → 지도교수 P1이 소속을 컴퓨터 공학과에서 전자과로 변경시 학번이 100과 400인 투플을 모두 변경해야 한다.
+        
+        → 프로젝션으로 2NF 릴레이션을 분해 하여 이행적 함수 종속을 제거해야된다
+        
+- 제 3정규형 <3NF>
+    
+    **2NF이며 키가 아닌 모든 애트리뷰트들은 기본 키에 이행적 함수 종속이 되지 않는다.**
+    
+    - 무손실 분해
+        
+        원래의 릴레이션에서 얻을 수 있는 정보는 분해된 릴레이션들로부터 얻을 수 있으나 역은 성립하지 않는다
+        
+        ex → 학생지도와 지도교수학과로 분해한다.
         
         ![Untitled](Normalize/Untitled%206.png)
         
-    - relationship type의 특성
-        - 전체 참여(total participation)
-            - A-B 관계에서 개체 집합 A의 모든 개체가 A-B 관계에 참여
-            - ex) 교수 – 학과 관계
-        - 부분 참여(partial participation)
-            - A-B 관계에서 개체 집합 A의 일부 개체만 A-B 관계에 참여
-            - ex) 학생– 과목 관계에서 학생(휴학생 제외) 일부만 참여
-        - 존재 종속(existence dependence)
-            - 어떤 개체 b의 존재가 개체 a의 존재에 종속됨
-            - b는 a에 존재 종속
-            - a: 주 개체(dominant entity): 강성 개체
-                
-                b: 종속 개체(subordinate entity): 약성 개체
-                
+    - 3NF의 특징
+        - 키가 아닌 애트리뷰트 값의 갱신 시 불필요한 부작용이 발생하지 않음
+        - 모든 이원 릴레이션은 3NF에 속한다
+    - 3NF의 약점
         
-        ![Untitled](Normalize/Untitled%207.png)
+        <적용 할 수 없는 경우>
         
-- E-R Model
-    - 개체 – 관계 모델(Entity-Relationship model)
-        - 개념적 데이타 모델(conceptual data model)
-    - 현실 세계의 개념적 표현
-    - 개체 타입(집합)과 관계 타입(집합)을 기본 개념으로 현실 세계를 개념적으로 표현하는 방법
-    - 개체 집합(entity set)
-        - 한 개체 타입에 속하는 모든 개체 인스턴스**(entity instance)**
-    - 관계 집합(relationship set)
-        - 한 관계 타입에 속하는 모든 관계 인스턴스**(relationship instance)**
+        1. 복수의 후보키를 가지고 있음
+        2. 후보키들이 두개 이상의 애트리뷰트들로 구성됨
+        3. 후보키들의 애트리뷰트가 중첩됨
+    - 예시 (수강과목 릴레이션)
+        - 제약조건
+            - 한 학생은 한 교수의 강의만 수강
+            - 각 교수는 한 과목만 담당
+            - 같은 과목을 여러 교수가 담당 할 수 있음
+        - 수강과목 (학번, 과목, 교수)
+        - 후보 키 : {학번, 과목}, {학번, 교수}
+        - 기본 키 : {학번, 과목}
+        - 함수 종속 : {학번, 과목} → 교수, 교수 → 과목
+    
+    ![Untitled](Normalize/Untitled%207.png)
+    
+    - 3NF에서의 이상
+        - 삽입 이상 → 교수 P5가 자료 구조를 담당한다는 사실의 삽입은 학번이 있어야 된다
+        - 삭제 이상 → 100번 학생이 자료구조를 취소한다면 P2가 담당 교수라는 정보도 삭제
+        - 갱신 이상 → P1이 프로그램이 과목 대신 자료구조를 담당한다면, P1의 모둔 투플을 변경
+    
+    → 교수가 결정자이지만 후보 키가 아니라서 발생하는 문제
+    
+- 보이스/코드 정규형
+    - Boyce / Codd Normal Form (BCNF)란
+        - 릴레이션 R의 결정자가 모두 후보키 라면 릴레이션 R 은 BCNF이다
+        - 강한 제 3 정규형이다
+        - R이 BCNF라면 R은 1,2,3 정규형에 속한다
+- 고급 정규형
     
     ![Untitled](Normalize/Untitled%208.png)
     
-    - 특징
-        - 다 대 다(m : n) 관계 표현
-        - 다원 관계(n-ary relationship) 표현
-            - 두개 이상의 개체 타입이 하나의 관계에 관련 가능
-        - 다중 관계(multiple relationship) 표현
-            - 두 개체 타입 사이에 둘 이상의 관계가 존재 가능
-        - 관계 타입도 속성(attribute)을 가질 수 있음
-    - entity type & key attributes
-        - 키 애트리뷰트(key attributes)
-            - 한 개체 집합 내에서 각 개체마다 상이한 값을 갖는 애트리뷰트나 애트리뷰트 집합
-        - 키(key)
-            - 개체 타입 내의 모든 개체 인스턴스들을 유일하게 식별
-            - 동일한 키 값을 갖는 두 개의 개체 인스턴스는 없음
-        - E-R 다이어그램 상에서 밑줄로 표시
-    - weak entity type
-        - 약한 개체 타입(weak entity type)
-            - 자기자신의 애트리뷰트만으로는 키를 명세할 수 없는 개체 타입 ↔ 강한 개체 타입(strong entity type)
-            - 주 개체(dominant entity) – 강한 개체 타입,
-            종속 개체 (subordinate entity) – 약한 개체 타입
-        - 구별자(discriminator)
-            - 강한 개체와 연관된 약한 개체 집합 내에서만 이들을 서로 구별할 수 있는 애트리뷰트
-            - 부분 키(partial key)
-        - 식별 관계 타입(identifying relationship type)
-            - 약한 개체를 강한 개체에 연관시켜 개체를 유일하게 식별하게 하는 관계
-        
-        ![Untitled](Normalize/Untitled%209.png)
-        
-- UML
-    - **UML**: Unified Modeling Language
-    - UML has many components to graphically model different aspects of an entire software system
-    - UML Class Diagrams correspond to E-R Diagram, but several differences.
-    - Binary relationship sets are represented in UML by just drawin g a line connecting the entity sets. The relationship set name is written adjacent to the line.
-    - The role played by an entity set in a relationship set may also b e specified by writing the role name on the line, adjacent to th e entity set.
-    - The relationship set name may alternatively be written in a bo x, along with attributes of the relationship set, and the box is connected, using a dotted line, to the line depicting the relatio nship set.
-- Logical Data Model
-    - 논리적 데이타 모델(logical data model)
-        - 개념적 구조를 데이타베이스로 구현하기 위한 중간 단계로 논리적 개념인 레코드(개체) 타입과 관계로 표현
-        - 개념적 데이타 모델(conceptual data model)
-            - 개체-관계 데이타 모델
-            - 현실 세계를 추상적 개념인 개체 타입과 관계 타입으로 표현
+    **BCNF인 CPT 릴레이션의 제약조건**
     
-    ![Untitled](Normalize/Untitled%2010.png)
+    - 만일 CPT에 투플 <c1, p1, t1>과 <c1, p2, t2>가 포함되어 있다면 두개의 투플 <c1, p1, t2>와 <c1, p2, t1>도 포함되어 있어야 된다.
     
-    - 네트워크 데이타 모델 (network data model)
-    - 계층 데이타 모델 (hierarchical data model)
-    - 관계 데이타 모델 (relational data model)
-    - 객체지향 데이타 모델 (object-oriented data model)
-        - 객체 데이타 모델(object data Model)
-    - 객체-관계 데이타 모델 (object-relational data model)
-        - 확장 관계 데이타 모델(extended relational data model)
+    **CPT 릴레이션에서의 변경 이상**
+    
+    - P4가 데이터베이스를 담당한다는 정보를 삽입하려면, 3개의 데이터베이스 교재 (T3, T4, T5) 에 대한 투플을 삽입해야 된다.
+    
+    **BCNF 이상의 원인**
+    
+    → 과목은 교수나 교재의 값 하나를 결정하는 거싱 아닌 값의 집합을 결정
+    
+    **다치 종속**
+    
+    - A, B, C가 릴레이션 R의 애트리뷰트의 부분 집합이라 할 때 애트리뷰트 쌍 (A, C)값에 대응되는 B 값의 집합이 A 값에만 종속되고, C 값에는 독립적이면 B 는 A 에 **다치종속**이며 A↠B 로 표기된다.
+    - A ↠ B 이면 A ↠ C 도 성립되면 A ↠ B | C이다.
+        - CPT 릴레이션에서 과목 ↠ 교재 이기에, 과목 ↠ 교수도 성립된다.
+    - 모든 FD 는 MVD이다.
+        - A → B 라면 A ↠ B 이다.
+    - MVD를 가진 릴레이션의 분해
+        - R(A,B,C)에서 MVD A ↠ B | C를 만족하면, 두 프로젝션 R1(A,B)와 R2(A,C)는 무손실 분해이다.
+- 제 4정규형 <4NF>
+    - Fourth Normal Form(4NF)
+        - 릴레이션 R에서 MVD A B를 만족하는 애트리뷰트 집합 A, B가 존재할
+        때 R의 모든 애트리뷰트들이 A에 함수 종속(즉 R의 모든 애트리뷰트 X
+        에 대해 A → X 이고 A가 후보 키) 이면 R은 4NF
+    - BCNF를 이용한 정의
+        - 릴레이션 R이 BCNF에 속하고 모든 MVD가 FD이면 R은 4NF
+    - 의미
+        - 어떤 릴레이션 R이 4NF이라면 MVD가 없거나, MVD A B|C가 있을 경
+        우 A에 대응되는 B와 C의 값은 하나씩 이어야 하며 이때 A는 후보키라는
+        것을 의미한다.
+    
+    ![Untitled](Normalize/Untitled%209.png)
+    
+- 제 5정규형 <5NF>
+    - SCP(SN,CN,PN) 릴레이션
+        
+        ![Untitled](Normalize/Untitled%2010.png)
+        
+    - 어떤 공급자(SN)가 어떤 부품(CN)을 어떤 프로젝트(PN)에 공
+    급하고 있다는 것을 표현
+    - SCP 릴레이션은 4NF
+        - 모든 애트리뷰트가 키에 속함, FD나 MVD가 존재하지 않음.
+    - SCP를 프로젝션하여 3개의 릴레이션 SC, CP, PS를 생성
+    - 어느 2개의 조인만으로는 SCP를 재생성할 수 없고 3개의 릴레이션 SC, CP, PS를 전부 조인할 때만 SCP를 재생성할 수 있음.
+    
+    ![Untitled](Normalize/Untitled%2011.png)
+    
+    - 릴레이션 SCP가 3개의 프로젝션 SC, CP, PS의 조인과 동등
+    **If** (S1,C1) ∈ SC and
+    (C1,P1) ∈ CP and
+    (P1,S1) ∈ PS then (S1,C1,P1) ∈ SCP
+    - 릴레이션 SCP에는 다음과 같은 3-way 순환 제약조건 (cyclic constraint)이 존재
+        
+        **If** (S1,C1,P2) ∈ SCP and
+        (S2,C1,P1) ∈ SCP and
+        (S1,C2,P1) ∈ SCP then (S1,C1,P1) ∈ SCP
+        
+    - SCP : 3-원 순환적 제약조건을 만족
+        - SCP는 3개의릴레이션SC,CP,PS를전부조인해야만 재생성될 수 있는 3-분해 릴레이션
+    - 만일 릴레이션이 n-way cyclic constraint를 만족하면 n-분해 릴레이션임.
+    - n-분해 릴레이션(n>2)
+        - n개의 프로젝션으로만 무손실 분해될 수 있으며 m(<n)개의 프로젝션으로는 무손실 분해가 불가능한 릴레이션
+    - 조인 종속(JD, Join Dependency)
+        - A,B,...,Z 를 각각 R의 애트리뷰트들에 대한 진 부분 집합이라 할 때 릴레이션 R이 그의 프로젝션 A, B, ..., Z의 조인과 동일하면 R은 JD *(A, B, ..., Z)를 만족한다.
+        - JD는 MVD의 일반형
+            - MVD는 JD의 특별한 경우(2-분해)
+        - SCP 릴레이션은
+            - JD *(SC, CP, PS)를 만족
+            - 3-분해 릴레이션
+        - 릴레이션 R(A,B,C)가 JD *(AB,AC)를 만족하면, 한 쌍(2)의MVD A ->> B|C도 성립.
+        - JD를 만족하는 n-분해 릴레이션은 n개의 프로젝션으로 분해해야 함.
+- 정규형들 간의 관계
+    
+    ![Untitled](Normalize/Untitled%2012.png)
+    
+    - 릴레이션의 정규화는 실제 데이터 값이 아니라 개념적인 측면에서 다루 어져야 함
+    - 실제 정규화 과정은 정규형의 순서와는 일치하지 않을 수 있음
