@@ -2,10 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>momentum</title>
   </head>
   <body>
-    <script src="script.js"></script>
+    <form id="login-form" class="hidden">
+      <input
+        required
+        maxlength="15"
+        type="text"
+        placeholder="What is your name?"
+      />
+      <input type="submit" value="login" />
+    </form>
+    <h2 id="clock">00:00:00</h2>
+    <h1 id="greeting" class="hidden"></h1>
+    <div id="quote">
+      <span></span>
+      <span></span>
+    </div>
+
+    <script src="javascript/script.js"></script>
+    <script src="javascript/clock.js"></script>
+    <script src="javascript/quotes.js"></script>
+    <script src="javascript/background.js"></script>
   </body>
 </html>
