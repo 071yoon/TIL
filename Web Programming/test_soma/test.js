@@ -3,19 +3,22 @@ const cadet = document.getElementById("cadet");
 const byukim = document.getElementById("byukim");
 button.innerHTML = button.getAttribute("val");
 
-const stateChange = (event) => {
-  console.log(event);
-  var thisButton = event.target;
-  if (thisButton.getAttribute("val") == "first") {
-    thisButton.innerHTML = "second";
-    thisButton.setAttribute("val", "second");
+function stateChange(event) {
+  console.log(this);
+  if (this.getAttribute("val") === "first") {
+    this.innerHTML = "second";
+    this.setAttribute("val", "second");
+    console.log(this.getAttribute("val"));
+    //    this.setAttribute("val", "second");
   } else {
-    thisButton.innerHTML = "first";
-    thisButton.setAttribute("val", "first");
+    this.innerHTML = "first";
+    this.setAttribute("val", "first");
+    console.log(this);
+    //    this.setAttribute("val", "first");
   }
-};
+}
 // button.addEventListener("click", stateChange);
-button.onclick = stateChange;
+// button.onclick = stateChange;
 cadet.removeChild(byukim);
 const newDiv = document.createElement("div");
 newDiv.innerHTML = "good";

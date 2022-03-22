@@ -9,15 +9,14 @@ def setValues(x):
 
 # Creating the trackbars needed for adjusting the marker colour
 cv2.namedWindow("Color detectors")
-cv2.createTrackbar("Upper Hue", "Color detectors", 70, 360,setValues)
+cv2.createTrackbar("Upper Hue", "Color detectors", 70, 255,setValues)
 cv2.createTrackbar("Upper Saturation", "Color detectors", 255, 255,setValues)
 cv2.createTrackbar("Upper Value", "Color detectors", 255, 255,setValues)
-cv2.createTrackbar("Lower Hue", "Color detectors", 0, 360,setValues)
+cv2.createTrackbar("Lower Hue", "Color detectors", 0, 255,setValues)
 cv2.createTrackbar("Lower Saturation", "Color detectors", 150, 255,setValues)
 cv2.createTrackbar("Lower Value", "Color detectors", 150, 255,setValues)
 #BLUE [153, 255, 255, 64, 72, 49]
 #YELLO [30, 255, 255, 20, 72, 49]
-
 
 # Giving different arrays to handle colour points of different colour
 bpoints = [deque(maxlen=1024)]
@@ -99,7 +98,7 @@ while True:
     	cv2.CHAIN_APPROX_SIMPLE)
     center = None
 
-    # Ifthe contours are formed
+    # If the contours are formed
     if len(cnts) > 0:
     	# sorting the contours to find biggest 
         cnt = sorted(cnts, key = cv2.contourArea, reverse = True)[0]

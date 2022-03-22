@@ -7,7 +7,22 @@
     <title>Document</title>
   </head>
   <body>
-    <button id="changer" val="first"></button>
+    <script>
+      function stateChange() {
+        const button = document.getElementById("changer");
+        console.log(button);
+        if (button.getAttribute("val") === "second") {
+          button.innerHTML = "first";
+          button.setAttribute("val", "first");
+          // console.log(this.getAttribute("val"));
+          //    this.setAttribute("val", "second");
+        } else {
+          button.innerHTML = "second";
+          button.setAttribute("val", "second");
+        }
+      }
+    </script>
+    <button id="changer" val="first" onclick="stateChange();">first</button>
     <div id="yeoyoon" val="good">test</div>
     <form id="frm1">
       <div class="tester">TESTER</div>
@@ -15,7 +30,5 @@
     <ul id="cadet">
       <li id="byukim">byukim</li>
     </ul>
-
-    <script src="test.js"></script>
   </body>
 </html>
