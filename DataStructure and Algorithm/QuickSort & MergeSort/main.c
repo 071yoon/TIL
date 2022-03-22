@@ -8,7 +8,8 @@
 
 void mergeSort(float data[], int p, int r);
 void merge(float data[], int p, int q, int r);
-void quickSort(float data[], int L, int R);
+int partition(float data[], int low, int high);
+void quickSort(float data[], int low, int high);
 
 int main() {
     srand((unsigned)time(NULL));
@@ -73,28 +74,40 @@ void merge(float data[], int left, int mid, int right) {
     }
     printf("\n\n");
 }
-void quickSort(float data[], int L, int R) {
-    int left = L, right = R;
-    float pivot = data[(L + R) / 2];    // pivot 설정 (가운데)
-    float temp;
-    while (left <= right) {
-        while (data[left] < pivot)    // left가 pivot보다 큰 값을 만나거나 pivot을 만날 때까지 
-            left++;
-        while (data[right] > pivot)    // right가 pivot보다 작은 값을 만나거나 pivot을 만날 때까지 
-            right--;
-        if (left <= right) {    // left가 right보다 왼쪽에 있다면 교환
-            temp = data[left];
-            data[left] = data[right];
-            data[right] = temp;
-            left++; //오른쪽으로 한칸 이동
-            right--; //왼쪽으로 한칸 이동
+
+int partition(float data[], int low, int high) {
+    printf("\npartitioning %d to %d\nDATA: ", low, high);
+    for(int i = low; i <= high; i++){
+        printf("[%.2f] ", data[i]);
+    }
+    printf("\n");
+    float pivot = data[high]; //제일 우측에 있는 data 값
+    printf("pivot : [%.2f]\n", pivot);
+    int i = low - 1; //제일 왼쪽 index
+    for (int j = low; j < high; j++) {
+        if (data[j] <= pivot) {
+            i++; //하나 증가
+            printf("swapping [%d]:[%d]\n", i, j);
+            float tmp = data[i]; //pivot 값보다 작으니까 왼쪽에 작은거 정렬, 우측에 큰거 정렬
+            data[i] = data[j];
+            data[j] = tmp;
         }
-    }   // left가 right 보다 오른쪽에 있을 때까지 반복
+    }
+    printf("pivot arrange [%d] to [%d]\nData: ", high, i + 1);
+    float tmp = data[i + 1]; //pivot 중간에 집어넣기
+    data[i + 1] = data[high];
+    data[high] = tmp;
+    for(int i = low; i <= high; i++){
+        printf("[%.2f] ", data[i]);
+    }
+    printf("\n");
+    return (i + 1);
+}
 
-    /* recursion */
-    if (L < right)
-        quickSort(data, L, right);    // 왼쪽 배열 재귀적으로 반복 
-
-    if (left < R)
-        quickSort(data, left, R);    // 오른쪽 배열 재귀적으로 반복 
+void quickSort(float data[], int low, int high) {
+    if (low < high) {
+        int pi = partition(data, low, high); //파티션 나누기
+        quickSort(data, low, pi - 1); //파티션 기준 왼쪽 다시 quickSort
+        quickSort(data, pi + 1, high); //파티션 기준 오른쪽 다시 quickSort
+    }
 }
