@@ -1,0 +1,203 @@
+# 3주차
+
+- TWO UX Gulfs
+    - Gulfs of Evaluation and Execution [구현 하고자 하는것과 한 것의 차이]
+    - 현재 상태를 이해하는것과 어떻게 바꿀것인지에 대한 두 문제점
+- Affordance
+    - 행동 유지성 - 사용자가 인지하는 속성
+    - 제품을 보기만해도 어떻게 사용할지 알거나, 디자이너의 의도대로 사용자의 행동을 유발
+    - 우산에 홈 파져있으면 대충 짐을 끼우면 편해 보인다
+- Interaction
+    - Interaction Models
+        - 사람과 컴퓨터사이의 번역
+    - Ergonomics [인간공학]
+        - 상호작용의 물리적 특성
+    - Interaction Styles
+        - User/system 간의 대화
+    - Context [문맥?]
+        - 사회적, 집단적, 동기적
+    - 상호작용이란 무엇인가 ?
+        - Communication between user and system
+        - Mediator (중재인)
+        - Intelligent Agent (지능형 대리인) 이 필요하다
+    - Models of Interaction
+        - Terms of Interaction
+            - domain : area of work under study [그래픽 디자인], 작업공간
+            - goal : 어떤것을 하고싶은가 [빨간 삼각형을 그리고 싶다]
+            - task : 어떻게 해결할 것인지 [fill tool 을 정하고, 삼각형 그리기]
+            - 좀더 전통적인 상호작용이다
+            - task 와 goal 의 차이를 이해해야된다!
+        - Norman model
+            - Seven Stages
+                - 유저가 목표를 세운다
+                - 의도를 공식화한다
+                - 환경에서 할 행동을 정의한다
+                - 행동을 한다
+                - 시스템 상태를 인식한다
+                - 시스템 상태를 해석
+                - 시스템 상태를 내 목표와 비교한다
+            - 사용자가 바라보는 환경에 집중을 했다
+            - 어떠한 시스템들은 어떤 사람들에게 더 힘들다
+                - Gulf of Execution
+                    - 유저의 행동공식이 시스템에서 인정 안되면?
+                - Gulf of Evaluation
+                    - 유저의 원했던 시스템 상태가 실제 상태와 다르면?
+            - Slip
+                - 목표를 제대로 설정 후 제대로 행동에 대한 공식을 세웠다
+                - 근데 행동이 잘못됨
+                - Interface Design 을 수정하면 된다
+            - Mistake
+                - 그냥 애초에 목표부터 잘못 잡았다
+                - System 을 더 이해하기 쉽게 만들어야된다
+        - Interaction Framework
+            - Abowd and Beale framework
+                - Norman 의 확장판
+                - Interaction framework 를 4개로 쪼갰다
+                    - user
+                    - input
+                    - system
+                    - output
+                - 각각이 unique 한 언어를 가지고 있다
+                - 즉 interaction = 언어들 간의 번역
+                - problem in interaction = problem in translation
+                - User Intentions [유저의 의도]
+                    - 인터페이스에서 행동으로 번역됨
+                    - 시스템 상태로 번역
+                    - 결과로 보임
+                    - 유저가 해석
+                - 상호작용을 이해하는 프레임워크
+                    - 컴퓨터에 제약이 없음
+                    - 상호작용에 대한 모든 중요한 정보들을 분석할 수 있음
+                    - 시스템의 상호평가가 가능
+                    - 추상적이다
+    - Ergonomics [인간공학]
+        - 물리적인 특성과 의도를 공부
+        - Human Factor 라고도 불린다 → HCI
+        - 인간공학은 디자인이나 시트템을 만들 때 표준이나 가이드라인을 정의하는데 매우 좋음
+        - 어디에 control 을 넣을지
+        - 환경에 따라 어떤식으로 배치할지
+        - 건강상에 문제는 없는지
+        - 색은 어떻게 써야될지
+        - Office interface 는 글이 많고, 느리고, 깔끔하다
+        - industrial (산업적)인 경우에는 숫자이고, 빨라야되고, 조금 더러운 환경이다
+        - Glass Interface
+            - 산업용 기기에서 다이얼이나 손잡이 대신 인터페이스가 새로 등장함
+                - 더 싸고, 유연하고, 정확하고, 여러개를 나타낸다
+                - 근데 물리적으로 없고, 어렵고, 놓치는게 있을 수 있다
+        - Indirect manipulation
+            - office - direct
+                - 유저가 가상세계와 바로 소통한다
+            - industrial - indirect
+                - 유저가 진짜 세계와 소통하는데, interface를 통해서 소통한다
+                - feedback과 delay가 필요하다
+- Interaction style
+    - Dialogue box
+        - 중요한 이벤트 혹은 정보를 요청시에 팝업이 뜬다
+            - 파일 저장
+    - CLI (Command line interface)
+        - 컴퓨터에 명령을 직접적으로 넣는다
+        - function keys, single characters, short abbreviations, whole words or combination
+        - 반복적인 일을 할 때 좋다
+        - 초보자보다 전문가
+    - Menus
+        - 스크린에 옵션을 보여준다
+        - 기억을 덜해도 된다 [사용하기 쉬움]
+        - 재인식에 의존한다 [이름에 의미가 있어야됨]
+        - 숫자나, 단어, 방향키, 마우스로 선택
+        - 가끔 계층적일 수 있음
+        - pull-down, pull-up
+        - full WIMP 시스템으로 제한된다
+    - Natural language
+        - 사용하기 쉽다
+        - 음성인식이나 자연어 타이핑
+        - 애매모호하고 잘 사용하기 어려움
+            - 부분부분하게 사용해야됨
+            - 키워드를 하던가!
+    - Query Interfaces
+        - 질의문 Interface
+        - 질문을 받고 유저가 이끌어감 [ARS]
+        - Query language(SQL)
+            - DB에서 많이 쓴다
+            - DB구조를 잘 이해해야되고, 전문성이 필요함
+    - Form-fills
+        - 데이터 입력에 기본적인 부분
+        - 마치 종이처럼 스크린을 사용
+        - 데이터를 적절한 곳에 잘 삽입
+        - 디자인이 좋아야되고, 틀린거 잘 봐줄 수 있어야된다
+    - Spreadsheets
+        - 엑셀같은 경우
+        - Form-filling 을 더 정교하게 사용한 스타일
+        - 셀은 공식을 나타낸다
+    - WIMP Interface (Windows Icons Menus Pointers)
+        - PC나 desktop 환경에서 주로 사용한다
+    - Point and Click Interface
+        - 멀티미디어나, 웹 브라우저나 하이퍼 텍스트에서 사용
+        - icon이나 text link 나 지도에서 클릭!
+    - 3차원 Interface
+        - VR, AR, MR(Mixed Reality)
+- Interactivity
+    - GUI
+        - look(design, color, shape, layout, typeface) and feel(button, box, menu)
+    - Documentation
+        - graphical layout (document size, color, font)
+    - Equipment
+        - 생산 라인에 일관성을 부여
+    - OS - Look & Feel
+        - 브랜딩이 중요하다!
+        - 사용하기 쉽고 경험을 잘 보여주고 설명 할 수 있어야 된다
+    - Context
+        - 사용자의 context에 대한 이해가 필수적이다 [사회적으로]
+        - 일반 사람들
+            - 감동을 주고싶고, 경쟁하고 싶고, 실패를 두려워한다
+        - 동기부여
+            - 두려움, 충성, 야망, 만족
+        - 부적절한 시스템
+            - 동기부여가 부족하거나, 짜증을 유발함
+    - Experience, engagement and fun
+        - experience (1)
+            - 사용하는것이 아니라, 사용하고 싶게! 만들어야된다
+            - 경험의 심리적 요인
+                - 몰입!
+                - 긴장감과 지루함의 적절한 밸런스
+            - 교육
+                - 도움을 줄 수 있어야된다
+            - 더 넓게 필름, 드라마, 문학 등등
+        - physical engagement (2)
+            - 제약사항이 많다
+                - 인간공학
+                - 물리적
+                    - 컨트롤 패널이 컸으면 좋겠다
+                    - 물리적으로 다 들어가기 힘들다
+                - 안전성
+                    - 패널이 앞에 있으면 어른한테 안전
+                    - 뒤에 있으면 아기한테 안전
+                - 미적
+                - 경제성
+            - Fluidity
+                - 적절한 밸런스를 맞춰야된다
+                    - 반대가 반대의 행동을 해준다거나
+                    - on/off 같이 넣던가
+        - managing value(3)
+            - 사람들은 얻는것이 있어야되고! 비용보다 더 많이 얻어가야 된다!
+                - 습관은 제외
+                - 얻는것이 돈이나 개인적인것이 아닐 수 있음!
+    - 인식
+        - GUI → 시각 정보 기반 상호작용
+        - 시각화의 목적은 인지의 생산성을 최대화시켜준다
+        - 사람은 정보를 얻는데 최소한의 노력만 한다 → 에너지 절약형
+        - Cognitive Cyborg
+            - 디자인 상호작용은 인지 생산성을 최대화 시킬 수 있어야된다
+            - 사람
+                - 실제로 보여주는것은 정말 적은 정보만 보여준다
+                - visual pattern search 의 결과인  visual query 가 보여진다
+                - 실제로 눈으로 보는것은 더 많이 정보를 얻을 수 있어야되며, 마우스는 실행 할 수 있어야된다
+            - 컴퓨터
+                - visual pattern search 로 인식되어 처리된다
+                - 컴퓨터의 결과가 보여진다
+                - 관련된 정보가 하이라이트 되거나 줌인되어 보여준다
+            - 메모리 extension by 시각화
+                - 보여지는 정보들이 단어를 연상 시킬 수 있으며, long-term memory 로 들어 갈 수 있어야 된다
+        
+    - 인지하는 노력을 최소화하자!
+    - pattern search 를 최대한 도와주자
+    - 인지적인 활동을 활성화 시키자! → memory extension
