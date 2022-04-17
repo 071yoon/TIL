@@ -5,10 +5,10 @@ struct Tree_Node{
 	int key;
 };
 
-void Init_Tree(struct Tree_Node *Target_Tree){ //init all tree to -1
+void Init_Tree(struct Tree_Node *Target_Tree){ //init all tree to 0
 	int cnt = 0;
 	for(int i = cnt; i < MAX_SIZE; i++){
-		Target_Tree[i].key = -1;
+		Target_Tree[i].key = 0;
 	}
 }
 
@@ -21,7 +21,7 @@ void Edit_Tree(struct Tree_Node *Target_Tree, int item, int cnt){ //edit cntth t
 }
 
 void Show_Right_Child(struct Tree_Node *Target_Tree, int POSITION){
-	if (POSITION * 2 + 1 >= MAX_SIZE || Target_Tree[POSITION * 2 + 1].key == -1){
+	if (POSITION * 2 + 1 >= MAX_SIZE){
 		printf("There is no right child\n");
 		return;
 	}
@@ -29,7 +29,7 @@ void Show_Right_Child(struct Tree_Node *Target_Tree, int POSITION){
 }
 
 void Show_Left_Child(struct Tree_Node *Target_Tree, int POSITION){
-	if (POSITION * 2 >= MAX_SIZE || Target_Tree[POSITION * 2].key == -1){
+	if (POSITION * 2 >= MAX_SIZE){
 		printf("There is no left child\n");
 		return;
 	}
