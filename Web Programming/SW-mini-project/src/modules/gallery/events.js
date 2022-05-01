@@ -22,12 +22,19 @@ const addGalleryEventListeners = () => {
       addEntryToDb("gallery", reader.result);
 
       cnt += 1;
-      const newItem = `
-      <a href="#" class="item" style="color: black; text-decoration: none;">
+      const newItem =
+        `
+      <a id="image` +
+        cnt +
+        `" href="#" class="item" style="color: black; text-decoration: none;">
       
         <img alt="stuff" src=${reader.result}>
 
-        <p>게시글 번호: ${cnt}</p>
+        <p style="display: inline-block;">게시글 번호: ${cnt}</p>
+        <button oncick="deleteImages(` +
+        cnt +
+        `)" style="margin-top: 15px; float: right;">삭제</button>
+
       </a>
     `;
       gallerySection.innerHTML = newItem + gallerySection.innerHTML;
@@ -40,18 +47,34 @@ const addImagesToGallery = async () => {
   //4. getEntryFromDb()를 사용해서 gallery 테이블에 담긴 데이터를 galleryData에 할당하세요. await 뒤에 작성하세요.
   const galleryData = await getEntryFromDb("gallery");
   cnt = galleryData.length + 1;
+
   const galleryItems = galleryData.reverse().map((singlePhoto) => {
     cnt -= 1;
-    return `
-      <a href="#" class="item" style="color: black; text-decoration: none;">
-        <img alt="stuff" src=${singlePhoto} style="border: 3px solid white">
-        <p>게시글 번호: ${cnt}</p>
+    return (
+      `
+      <a id="image` +
+      cnt +
+      `" href="#" class="item" style="color: black; text-decoration: none;">
+        <img alt="stuff" src=${singlePhoto}>
+        <p style="display: inline-block;">게시글 번호: ${cnt}</p>
+        <button oncick="deleteImages(` +
+      cnt +
+      `)" style="margin-top: 15px; float: right;">삭제</button>
       </a>
-    `;
+    `
+    );
   });
   cnt = galleryData.length;
   gallerySection.style.display = "grid";
   gallerySection.innerHTML = galleryItems.join("");
+};
+
+const deleteImages = (cnt) => {
+  var id = "image" + cnt;
+  // const image = document.getElementById(id);
+
+  console.log("id: " + id);
+  console.log("cnt: " + cnt);
 };
 
 export { addGalleryEventListeners, addImagesToGallery };

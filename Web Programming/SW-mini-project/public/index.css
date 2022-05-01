@@ -87,12 +87,12 @@ nav p {
 }
 
 .profile-photo {
-  background-color: transparent;
   margin-right: 2em;
   margin-left: -2em;
   width: 10em;
   height: 10em;
   border-radius: 50%;
+  border: 2px solid white;
 }
 
 .profile-photo > img {

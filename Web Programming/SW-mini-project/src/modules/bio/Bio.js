@@ -56,11 +56,13 @@ const Bio = async () => {
       <p class="name">${
         userInfo[0] ? userInfo[0].name : "Please update your bio"
       }</p>
-      <p class="about">${userInfo[0] ? userInfo[0].about : "About bio"}</p>
+      <p class="about" style="font-size: 20px">${
+        userInfo[0] ? userInfo[0].about : "About bio"
+      }</p>
       
       <button class="edit-bio-button"}>Edit bio</button>
     </div>
-    <div class="additional-info">
+    <div class="additional-info" style="font-size: 20px">
       <h4>Age</h4>
       <p class="age">${getAge()}</p>
       <h4>Tel</h4>

@@ -28,16 +28,20 @@
 .item {
   height: 20em;
   width: 17.5em;
-  background: #000;
   margin-bottom: 2em;
+  border: 3px solid white;
+  color: black;
+  background-image: url("https://user-images.githubusercontent.com/66371206/166138517-0b70c418-2ab4-4df0-89c4-62e143d26fde.jpg");
 }
 
 .item > img {
   height: 100%;
   width: 100%;
+  opacity: 95%;
+  background-color: #0094d0;
   object-fit: cover;
 }
 
 .item > img:hover {
-  opacity: 0.7;
+  opacity: 85%;
 }
