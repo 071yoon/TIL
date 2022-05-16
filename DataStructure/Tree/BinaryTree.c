@@ -16,17 +16,26 @@ struct node *newNode(int item) {
 	return temp;
 }
 
+struct node *veryRight(struct node *root){
+	struct node *tmp = root;
+	while(tmp->right){
+		tmp = tmp->right;
+	}
+	return tmp;
+}
+
 // Inorder Traversal
-void inorder(struct node *root) {
+void inorder(struct node *root, struct node *last) {
 	if (root != NULL) {
 		// Traverse left
-		inorder(root->left);
-
+		inorder(root->left, last);
 		// Traverse root
-		printf("%d -> ", root->key);
-
+		if (root != last)
+			printf("%d -> ", root->key);
+		else
+			printf("%d", root->key);
 		// Traverse right
-		inorder(root->right);
+		inorder(root->right, last);
 	}
 }
 
@@ -67,7 +76,7 @@ struct node *deleteNode(struct node *root, int key) {
 		root->right = deleteNode(root->right, key);
 
 	else {
-	// If the node is with only one child or no child
+		// If the node is with only one child or no child
 		if (root->left == NULL) {
 			struct node *temp = root->right;
 			free(root);
@@ -108,18 +117,23 @@ int main() {
 	root = insert(root, 32);
 	root = insert(root, 36);
 
+	struct node *last = veryRight(root);
+	printf("Inorder traversal[original]: ");
+	inorder(root, last);
 
-	printf("Inorder traversal: ");
-	inorder(root);
 
 	root = deleteNode(root, 3);
+	printf("\ndelete 3");
 	printf("\nInorder traversal: ");
-	inorder(root);
+	inorder(root, last);
 	root = deleteNode(root, 30);
+	printf("\ndelete 30");
 	printf("\nInorder traversal: ");
-	inorder(root);
+	inorder(root, last);
 	root = deleteNode(root, 15);
+	printf("\ndelete 15");
 	printf("\nInorder traversal: ");
-	inorder(root);
+	inorder(root, last);
+	printf("\n");
 
 }

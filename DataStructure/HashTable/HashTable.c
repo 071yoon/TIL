@@ -29,7 +29,7 @@ int checkPrime(int n) {
 	return 1;
 }
 
-int getPrime(int n){
+int getPrime(int n) {
   if (n % 2 == 0) {
   	n++;
   }
