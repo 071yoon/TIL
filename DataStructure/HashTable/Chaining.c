@@ -9,7 +9,7 @@ typedef struct node {
 }Node;
  
 Node* hashTable[MAX_HASH];
- 
+
 void  AddHashData(int key, Node* node) {
     int hash_key = HASH_KEY(key);
     if (hashTable[hash_key] == NULL) {

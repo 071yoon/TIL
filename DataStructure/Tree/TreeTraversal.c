@@ -9,7 +9,7 @@ struct node {
 	struct node* right;
 };
 
-// Inorder traversal
+// Inorder traversal 중위순회
 void inorderTraversal(struct node* root) {
 	if (root == NULL) return;
 	inorderTraversal(root->left);
@@ -17,7 +17,7 @@ void inorderTraversal(struct node* root) {
 	inorderTraversal(root->right);
 }
 
-// preorderTraversal traversal
+// preorderTraversal traversal 전위순회
 void preorderTraversal(struct node* root) {
 	if (root == NULL) return;
 	printf("%d ->", root->item);
@@ -25,7 +25,7 @@ void preorderTraversal(struct node* root) {
 	preorderTraversal(root->right);
 }
 
-// postorderTraversal traversal
+// postorderTraversal traversal 후위순회
 void postorderTraversal(struct node* root) {
 	if (root == NULL) return;
 	postorderTraversal(root->left);

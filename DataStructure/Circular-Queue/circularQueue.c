@@ -93,5 +93,7 @@ int main() {
 	// Fails to enqueue because front == rear + 1
 	enQueue(8);
 
+	deQueue();
+	display();
 	return 0;
 }
