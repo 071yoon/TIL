@@ -2,6 +2,8 @@
 
 ## Today I Learned
 
-(Artificial Intelligence)[Artifical%20Intelligence/]
+[Artificial Intelligence](Artificial%20Intelligence/Projects/README.md)
 
-(Computer Vision)[Computer%20Vision/]
+[Computer Vision](Computer%20Vision/README.md)
+
+[Data Communication](Data%20Communication/Final%20Exam.md)
