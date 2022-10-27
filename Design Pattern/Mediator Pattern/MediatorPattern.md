@@ -34,7 +34,7 @@ Guest를 누르면 Username과 Password가 막히고, Login을 누르면 Usernam
 
 ## 구현
 
-<img width="500" alt="image" src="https://user-images.githubusercontent.com/66371206/198248569-9339a545-10bc-4934-ae95-7ab347beec68.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/66371206/198255317-c3e7600d-e7b1-4f6b-a2ae-2afb8fb129e2.png">
 
 ### Mediator
 
