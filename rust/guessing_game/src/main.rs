@@ -14,6 +14,7 @@ fn main() {
         let mut guess = String::new();
 
         // &mut guess 는 guess 변수에 대한 참조를 생성
+        // 여기서 guess 가 mutable 이 아닌 경우 read line을 할 수 없음
         // Result 타입은 열거형으로 Ok, Err 두 가지의 값이 있음
         // expect 를 호출하지 않으면 compile 과정에서 경고 발생
         io::stdin()
@@ -23,11 +24,11 @@ fn main() {
         println!("You guessed: {}", guess);
 
         // parse 메소드는 문자열을 숫자로 변환
-        let guess: u32 = guess.trim().parse(){
+        let guess: u32 = match guess.trim().parse() {
             // expect 메소드 호출을 match 표현식으로 바꾸는 것은 에러 발생 시 종료
             Ok(num) => num,
             Err(_) => continue,
-        }
+        };
 
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
